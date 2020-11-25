@@ -11,7 +11,6 @@ class _SelectGenderPageState extends State<SelectGenderPage> {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text("fucking giiiiiiiiit" , style: MyStyles.textFieldHintStyle,),
       ),
     );
   }
