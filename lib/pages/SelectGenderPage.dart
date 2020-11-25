@@ -11,7 +11,8 @@ class _SelectGenderPageState extends State<SelectGenderPage> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.red
+        color: Colors.red,
+        shape: BoxShape.circle
       ),
     );
   }
