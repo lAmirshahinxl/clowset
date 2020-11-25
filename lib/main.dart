@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
         },
         debugShowCheckedModeBanner: false,
         builder: BotToastInit(),
-        //1. call BotToastInit
         navigatorObservers: [BotToastNavigatorObserver()],
         title: MyStrings.appTitle,
         theme: ThemeData(
