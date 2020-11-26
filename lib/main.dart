@@ -4,6 +4,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:clowset/extension/ZoomSlideUpTransitionsBuilder.dart';
 import 'package:clowset/extension/ext.dart';
 import 'package:clowset/pages/SelectGenderPage.dart';
+import 'package:clowset/pages/Splash.dart';
 import 'package:clowset/styles/colors.dart';
 import 'package:clowset/styles/strings.dart';
 import 'package:flutter/material.dart';
@@ -44,31 +45,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class SplashScreen extends StatefulWidget {
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-
-  @override
-  void initState() {
-    super.initState();
-    Timer(
-        Duration(seconds: 3),
-            () => {
-          Navigator.of(context).pushReplacementNamed("/selectGender")
-        });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: MyColors.white,
-      child: Center(
-        child: Text("splash"),
-      ),
-    );
-  }
-}
 
