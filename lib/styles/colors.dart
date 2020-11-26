@@ -15,6 +15,7 @@ class MyColors {
   static final Color black = parseColor("#000000");
   static final Color white = parseColor("#ffffff");
   static final Color sky = parseColor("#00B2AD");
+  static final Color oranf = parseColor("#fe730e");
   static final Color mainTitle = parseColor("#200E32");
   static final Color lightPurple = parseColor("#930077");
   static final Color mustard = parseColor("#FFBD39");
