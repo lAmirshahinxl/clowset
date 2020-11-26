@@ -39,9 +39,9 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           Text("... لباست رو انتخاب کن   ",style: TextStyle(
             color: Colors.black.withOpacity(0.4),
-
             fontFamily: "iran",
             fontSize: 23,
+            decoration: TextDecoration.none,
             fontWeight: FontWeight.bold,
           )),
           SizedBox(
