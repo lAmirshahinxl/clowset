@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:clowset/styles/colors.dart';
 import 'package:clowset/styles/styles.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -31,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
             height: MediaQuery.of(context).size.height/2-MediaQuery.of(context).size.height/22,
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 25, left: 25),
+            padding: const EdgeInsets.only(right: 45, left: 45),
             child: Image.asset("assets/icon.png"),
           ),
           SizedBox(
@@ -40,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Text("... لباست رو انتخاب کن   ",style: TextStyle(
             color: Colors.black.withOpacity(0.4),
             fontFamily: "iran",
-            fontSize: 23,
+            fontSize: 18,
             decoration: TextDecoration.none,
             fontWeight: FontWeight.bold,
           )),
@@ -49,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Center(
               child: CircularProgressIndicator(
                 value: null,
-                strokeWidth: 7.0,
+                strokeWidth: 3.0,
               ),
             ),
           ),

@@ -2,14 +2,13 @@ import 'dart:async';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:clowset/extension/ZoomSlideUpTransitionsBuilder.dart';
-import 'package:clowset/extension/ext.dart';
-import 'package:clowset/pages/SelectGenderPage.dart';
+import 'package:clowset/pages/Application.dart';
+import 'package:clowset/pages/Login.dart';
+import 'package:clowset/pages/Register.dart';
 import 'package:clowset/pages/Splash.dart';
-import 'package:clowset/styles/colors.dart';
 import 'package:clowset/styles/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:websafe_svg/websafe_svg.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
         initialRoute: "/splash",
         routes: {
           '/splash': (context) => SplashScreen(),
-          '/selectGender': (context) => SplashScreen(),
+          '/selectGender': (context) => Login(),
         },
         debugShowCheckedModeBanner: false,
         builder: BotToastInit(),
