@@ -15,7 +15,10 @@ class MyColors {
   static final Color black = parseColor("#000000");
   static final Color white = parseColor("#ffffff");
   static final Color sky = parseColor("#00B2AD");
-  static final Color oranf = parseColor("#fe730e");
+  static final Color orang = parseColor("#fe730e");
+  static final Color mello_gray = parseColor("#e9e9e9");
+  static final Color gray = Color.fromARGB(255, 142, 142, 207);
+  static final Color mello_white = Colors.white.withOpacity(0.8);
   static final Color mainTitle = parseColor("#200E32");
   static final Color lightPurple = parseColor("#930077");
   static final Color mustard = parseColor("#FFBD39");
