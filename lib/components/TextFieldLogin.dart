@@ -6,12 +6,12 @@ class TextFieldLogin extends StatefulWidget {
   @override
   _TextFieldLoginState createState() => _TextFieldLoginState();
 
-  TextEditingController _controller;
-  String _hintText;
-  int _maxLength;
-  bool _isNumber;
+  final  controller;
+  final  hintText;
+  final  maxLength;
+  final  isNumber;
 
-  TextFieldLogin(this._controller, this._hintText, this._maxLength , this._isNumber);
+  TextFieldLogin({this. controller, this. hintText, this.maxLength , this. isNumber});
 }
 
 class _TextFieldLoginState extends State<TextFieldLogin> {
@@ -20,7 +20,7 @@ class _TextFieldLoginState extends State<TextFieldLogin> {
   // "مثال : ۰۹۱۱۱۲۳۴۵۶۷"
   @override
   Widget build(BuildContext context) {
-    if (widget._isNumber){
+    if (widget.isNumber){
       return Card(
         elevation: 0,
         color: Colors.black.withOpacity(0.03),
@@ -30,16 +30,16 @@ class _TextFieldLoginState extends State<TextFieldLogin> {
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: TextField(
-            controller: widget._controller,
+            controller: widget.controller,
             keyboardType: TextInputType.number,
             style: MyStyles.textFieldStyleLogin,
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9.,]')),],
-            maxLength: widget._maxLength,
+            maxLength: widget.maxLength,
             maxLines: 1,
             decoration: InputDecoration(
                 counterText: '',
                 contentPadding: EdgeInsets.only(right: 20 , left: 20),
-                hintText: widget._hintText,
+                hintText: widget.hintText,
                 hintStyle: MyStyles.textFieldHintStyle ,
                 border: InputBorder.none
             ),
@@ -56,16 +56,16 @@ class _TextFieldLoginState extends State<TextFieldLogin> {
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: TextField(
-            controller: widget._controller,
+            controller: widget.controller,
             keyboardType: TextInputType.text,
             style: MyStyles.textFieldStyleLogin,
             inputFormatters: [FilteringTextInputFormatter.deny(RegExp('[0-9.,]')),],
-            maxLength: widget._maxLength,
+            maxLength: widget.maxLength,
             maxLines: 1,
             decoration: InputDecoration(
                 counterText: '',
                 contentPadding: EdgeInsets.only(right: 20 , left: 20),
-                hintText: widget._hintText,
+                hintText: widget.hintText,
                 hintStyle: MyStyles.textFieldHintStyle ,
                 border: InputBorder.none
             ),

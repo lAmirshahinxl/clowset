@@ -11,9 +11,17 @@ class MyStyles {
       fontWeight: FontWeight.normal);
 
   static final textFieldHintStyle = TextStyle(
-    color: Colors.black.withOpacity(0.4),
+    color: Colors.black.withOpacity(0.8),
     fontFamily: "iran",
-    fontSize: 12,
-    fontWeight: FontWeight.normal,
+    fontSize: 17,
+    fontWeight: FontWeight.bold,
+  );
+
+  static final registerTitle = TextStyle(
+    color: Colors.black54,
+    fontFamily: "iran",
+    fontWeight: FontWeight.bold,
+    fontSize: 22,
+    decoration: TextDecoration.none,
   );
 }

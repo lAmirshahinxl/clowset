@@ -1,0 +1,107 @@
+import 'package:clowset/components/MyEditText.dart';
+import 'package:clowset/components/MyPassword.dart';
+import 'package:clowset/components/TextNaranji.dart';
+import 'package:clowset/components/button.dart';
+import 'package:clowset/components/text_underlined.dart';
+import 'package:clowset/styles/strings.dart';
+import 'package:clowset/styles/styles.dart';
+import 'package:flutter/material.dart';
+
+class RegisterPage extends StatefulWidget {
+  @override
+  _RegisterPageState createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  var controller = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomPadding: true,
+      body:  SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * .2,
+              ),
+              Text(MyStrings.registerWithNumber,
+                  textAlign: TextAlign.center,
+                  style: MyStyles.registerTitle),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * .12,
+              ),
+              TexteNarenji(
+                text: MyStrings.phoneNumber, aligment: Alignment.center
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  margin: EdgeInsets.only(left: 30),
+                  child: Row(
+                    children: [
+                      MyEditText(
+                          hint: "+98",
+                          reg: r'[0-9\.\+]',
+                          length: 3,
+                          controller: controller,
+                          inputKeyboard: TextInputType.text,
+                          hintColor: Colors.black26,
+                          textColor: Colors.black54,
+                          width: MediaQuery.of(context).size.width * 0.16,
+                          height: 50.0),
+                      MyEditText(
+                          hint: "9351234567",
+                          reg: r'[0-9]',
+                          length: 10,
+                          controller: controller,
+                          hintColor: Colors.black26,
+                          textColor: Colors.black54,
+                          inputKeyboard: TextInputType.text,
+                          width: MediaQuery.of(context).size.width * 0.72,
+                          height: 50.0)
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 10,),
+              TexteNarenji(
+                text: MyStrings.password, aligment: Alignment.center
+              ),
+              MyPassword(
+                controller: controller,
+                hint: MyStrings.inputPassword,
+                length: 30,
+                width: MediaQuery.of(context).size.width * .7,
+                height: MediaQuery.of(context).size.height * .1,
+              ),
+              TexteNarenji(
+                text: MyStrings.repeatPassword, aligment: Alignment.center
+              ),
+              MyPassword(
+                controller: controller,
+                hint:
+                "تکرار رمز عبور خود را وارد کنید",
+                length: 22,
+                width: MediaQuery.of(context).size.width * .7,
+                height: MediaQuery.of(context).size.height * .1,
+              ),
+              ButtonBig(
+                text: "ورود",
+              ),
+              UnderlineText(
+                text: "حساب کاربری دارید؟", sending: "ورود",
+                function: () {
+                  Navigator.pushReplacementNamed(context, "/login");
+                },
+              )
+            ],
+        ),
+      ),
+    );
+  }
+}
