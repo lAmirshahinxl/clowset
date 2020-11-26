@@ -14,7 +14,4 @@ class _SelectGenderPageState extends State<SelectGenderPage> {
       ),
     );
   }
-
-  // amir dolam lat
-  // my Comment
 }
