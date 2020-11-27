@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:clowset/styles/colors.dart';
 import 'package:clowset/styles/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -13,8 +14,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3),
-        () => {Navigator.of(context).pushReplacementNamed("/selectGender")});
+    Timer(Duration(seconds: 3), () => {
+      _checkLoginAndGender()
+    });
   }
 
   @override
@@ -65,5 +67,18 @@ class _SplashScreenState extends State<SplashScreen> {
         ],
       ),
     );
+  }
+
+  void _checkLoginAndGender()async {
+    SharedPreferences _pref = await SharedPreferences.getInstance();
+    if (_pref.containsKey('gender')){
+      if (_pref.containsKey('token')) {
+        Navigator.pushReplacementNamed(context, '/index');
+      } else {
+        Navigator.pushReplacementNamed(context, '/register');
+      }
+    } else {
+      Navigator.of(context).pushReplacementNamed("/selectGender");
+    }
   }
 }

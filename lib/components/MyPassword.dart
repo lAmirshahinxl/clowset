@@ -10,7 +10,7 @@ class MyPassword extends StatelessWidget {
   final hint;
 
   MyPassword(
-      {this.controller, this.hint, this.width, this.height, this.length });
+      {this.controller, this.hint, this.width, this.height, this.length});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,7 @@ class MyPassword extends StatelessWidget {
       width: width,
       height: height,
       child: TextField(
+          controller: controller,
           maxLength: length,
           obscureText: true,
           textAlign: TextAlign.right,
@@ -39,6 +40,7 @@ class MyPassword extends StatelessWidget {
                 fontSize: 14,
                 backgroundColor: null,
               ),
+              contentPadding: EdgeInsets.only(right: 5, left: 5),
               focusedBorder: UnderlineInputBorder(
                 borderSide:
                     BorderSide(color: MyColors.mello_gray.withOpacity(0.5)),

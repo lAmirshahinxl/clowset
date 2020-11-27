@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 
 class MyStrings {
-  static final String baseUrl = "https://ktno.ir/";
+  static final String baseUrl = "http://clowset.com/admin/admin/app2/";
   static final String appTitle = "clowset";
   static final String imFmale = "! من خانمم";
   static final String imMale = "! من آقام";
-  static final String registerWithNumber = "ثبت نام با شماره تماس";
+  static final String login = "ورود";
+  static final String verifyCodeSended = "کد تاییدیه به شماره زیر ارسال گردید لطفا آن را وارد نمایید";
+  static final String verifyCode = "کد تاییدیه ";
+  static final String nameFamily = "نام و نام خانوادگی";
+  static final String inputRePassword = "تکرار رمز عبور خود را وارد کنید";
+  static final String haveAccount = "حساب کاربری دارید؟";
+  static final String registerWithNumber = "ثبت نام با شماره تلفن";
   static final String phoneNumber = "شماره همراه";
   static final String password = "رمز عبور";
   static final String inputPassword = "رمز عبور را وارد نمایید";

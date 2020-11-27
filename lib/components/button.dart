@@ -2,10 +2,12 @@
 import 'package:clowset/styles/colors.dart';
 import 'package:flutter/material.dart';
 
+typedef ClickedOnButton();
 class ButtonBig extends StatelessWidget {
   final String text;
+  final ClickedOnButton onClick;
 
-  ButtonBig({this.text});
+  ButtonBig({this.text , @required this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,9 @@ class ButtonBig extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(9.0),
         ),
-        onPressed: () {},
+        onPressed: () {
+          onClick();
+        },
         color: MyColors.orang,
         child: Text(
           text,

@@ -75,6 +75,6 @@ class _SelectGenderState extends State<SelectGender> {
     } else {
       _pref.setString('gender', 'fmale');
     }
-    Navigator.pushNamed(context, '/register');
+    Navigator.pushReplacementNamed(context, '/register');
   }
 }

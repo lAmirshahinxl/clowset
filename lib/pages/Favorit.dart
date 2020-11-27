@@ -8,6 +8,9 @@ class Favorit extends StatefulWidget {
 class _FavoritState extends State<Favorit> {
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text("Profile"),);
+    return Container(
+      color: Colors.yellow,
+      child: Text("Profile"),
+    );
   }
 }

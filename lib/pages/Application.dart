@@ -1,4 +1,3 @@
-
 import 'package:clowset/pages/Favorit.dart';
 import 'package:clowset/pages/Home.dart';
 import 'package:clowset/pages/SabadKharid.dart';
@@ -14,7 +13,8 @@ class Application extends StatefulWidget {
 }
 
 class _ApplicationState extends State<Application> {
-  PersistentTabController _controller  = PersistentTabController(initialIndex: 0);
+  PersistentTabController _controller =
+      PersistentTabController(initialIndex: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -25,47 +25,45 @@ class _ApplicationState extends State<Application> {
       confineInSafeArea: true,
       backgroundColor: Colors.white,
       handleAndroidBackButtonPress: true,
-      resizeToAvoidBottomInset: true, // This needs to be true if you want to move up the screen when keyboard appears.
+      resizeToAvoidBottomInset: true,
       stateManagement: true,
-      hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument.
+      hideNavigationBarWhenKeyboardShows: true,
       decoration: NavBarDecoration(
         borderRadius: BorderRadius.circular(10.0),
         colorBehindNavBar: Colors.white,
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: ItemAnimationProperties( // Navigation Bar's items animation properties.
+      itemAnimationProperties: ItemAnimationProperties(
+        // Navigation Bar's items animation properties.
         duration: Duration(milliseconds: 200),
         curve: Curves.ease,
       ),
-      screenTransitionAnimation: ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
+      screenTransitionAnimation: ScreenTransitionAnimation(
+        // Screen transition animation on change of selected tab.
         animateTabTransition: true,
         curve: Curves.ease,
         duration: Duration(milliseconds: 200),
       ),
-      navBarStyle: NavBarStyle.style15, // Choose the nav bar style with this property.
+      navBarStyle:
+          NavBarStyle.style15, // Choose the nav bar style with this property.
     );
   }
 
   List<Widget> _buildScreens() {
-    return [
-      SelectGender(),
-      Favorit(),
-      Search(),
-      SabadKharid(),
-      HomePage()
-    ];
+    return [HomePage(), Favorit(), Search(), SabadKharid(), HomePage()];
   }
+
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Image.asset("assets/profine.png" ) ,
+        icon: Icon(Icons.person_outline),
         title: ("پروفایل"),
         activeColor: MyColors.orang,
         inactiveColor: MyColors.gray,
       ),
       PersistentBottomNavBarItem(
-        icon: Image.asset("assets/favori.png"),
+        icon: Icon(Icons.favorite_border),
         title: ("مورد علاقه"),
         activeColor: MyColors.orang,
         inactiveColor: MyColors.gray,
@@ -77,19 +75,17 @@ class _ApplicationState extends State<Application> {
         activeContentColor: Colors.white,
       ),
       PersistentBottomNavBarItem(
-        icon: Image.asset("assets/cart.png"),
+        icon: Icon(Icons.shopping_basket_outlined),
         title: ("سبد خرید"),
         activeColor: MyColors.orang,
         inactiveColor: MyColors.gray,
       ),
       PersistentBottomNavBarItem(
-        icon: Image.asset("assets/home.png") ,
+        icon: Icon(Icons.home_outlined),
         title: ("خانه"),
         activeColor: MyColors.orang,
         inactiveColor: MyColors.gray,
       ),
     ];
   }
-// amir dolam lat
-// my Comment
 }

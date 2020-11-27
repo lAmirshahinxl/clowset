@@ -1,8 +1,15 @@
+import 'dart:async';
+
+import 'package:bot_toast/bot_toast.dart';
 import 'package:clowset/components/TextNaranji.dart';
 import 'package:clowset/components/button.dart';
 import 'package:clowset/components/text_underlined.dart';
+import 'package:clowset/extension/ext.dart';
+import 'package:clowset/styles/strings.dart';
+import 'package:clowset/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_entry_text_field/pin_entry_text_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Verify extends StatefulWidget {
   @override
@@ -11,7 +18,13 @@ class Verify extends StatefulWidget {
 
 class _VerifyState extends State<Verify> {
   var controller = TextEditingController();
+  String _number = "";
 
+  @override
+  void initState() {
+    getNumber();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,34 +36,27 @@ class _VerifyState extends State<Verify> {
             SizedBox(
               height: MediaQuery.of(context).size.height * .15,
             ),
-            Text(" کد تاییدیه ",
+            Text(MyStrings.verifyCode,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black.withOpacity(0.4),
-                  fontFamily: "iran",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                  decoration: TextDecoration.none,
-                )),
+                style: MyStyles.registerTitle),
             SizedBox(
               height: MediaQuery.of(context).size.height * .032,
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .12,
-              child: Text(
-                  "کد تاییدیه به شماره زیر ارسال گردید لطفا انرا وارد نمایید",
+              child: Text( MyStrings.verifyCodeSended,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.black.withOpacity(0.4),
                     fontFamily: "iran",height: 1.9,
                     fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontSize: 15,
                     decoration: TextDecoration.none,
                   )),
             ),
             Center(
               child: TexteNarenji(
-                  text: "989383119460+", aligment: Alignment.center,size: 23.0,),
+                  text: '$_number+', aligment: Alignment.center,size: 20.0,),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.35,
@@ -72,14 +78,7 @@ class _VerifyState extends State<Verify> {
                     child: PinEntryTextField(
                       showFieldAsBox: false,
                       onSubmit: (String pin) {
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: Text("Pin"),
-                                content: Text('Pin entered is $pin'),
-                              );
-                            }); //end showDialog()
+                        _callPinApi();
                       }, // end onSubmit
                     ), // end PinEntryTextField()
                   ),
@@ -87,7 +86,7 @@ class _VerifyState extends State<Verify> {
               ),
             ),
             ButtonBig(
-              text: "تایید",
+              text: "تایید", onClick: () {  },
             ),
             UnderlineText(
               text: "",sending: "ارسال مجدد",
@@ -97,5 +96,23 @@ class _VerifyState extends State<Verify> {
         ),
       ),
     );
+  }
+
+  Future<void> getNumber() async {
+    SharedPreferences _pref = await SharedPreferences.getInstance();
+    setState(() {
+      _number =_pref.getString('phoneNumber');
+    });
+  }
+
+  void _callPinApi()async {
+    BotToast.showLoading();
+    SharedPreferences _pref = await SharedPreferences.getInstance();
+    Timer(Duration(seconds: 2), (){
+      _pref.setString('token', 'sample');
+      Navigator.pushNamedAndRemoveUntil(context, '/index',(Route<dynamic> route) => false );
+      toast(text: "خوش آمدید", color: Colors.green);
+      BotToast.closeAllLoading();
+    });
   }
 }

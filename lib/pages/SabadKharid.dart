@@ -8,6 +8,9 @@ class SabadKharid extends StatefulWidget {
 class _SabadKharidState extends State<SabadKharid> {
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text("SabadKharid"),);
+    return Container(
+      child: Text("SabadKharid"),
+      color: Colors.purpleAccent,
+    );
   }
 }
