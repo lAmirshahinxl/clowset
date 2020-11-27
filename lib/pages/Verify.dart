@@ -91,7 +91,8 @@ class _VerifyState extends State<Verify> {
             UnderlineText(
               text: "",sending: "ارسال مجدد",
               function: () {},
-            )
+            ),
+            SizedBox(height: 20,)
           ],
         ),
       ),

@@ -180,7 +180,6 @@ class _RegisterPageState extends State<RegisterPage> {
     String _password = _passwordController.text.toString();
     String _repeatPassword = _rePasswordController.text.toString();
 
-/*
     SharedPreferences _pref = await SharedPreferences.getInstance();
     BotToast.showLoading();
     var model = await _service.login(
@@ -192,14 +191,6 @@ class _RegisterPageState extends State<RegisterPage> {
       Navigator.pushNamed(context, '/verify');
     } else {
       toast(text: model.message, color: Colors.red);
-    }*/
-    BotToast.showLoading();
-    SharedPreferences _pref = await SharedPreferences.getInstance();
-    Timer(Duration(seconds: 2), (){
-      _pref.setString('sampleToken', 'sample');
-      _pref.setString('phoneNumber', _phone);
-      Navigator.pushNamed(context, '/verify');
-      BotToast.closeAllLoading();
-    });
+    }
   }
 }

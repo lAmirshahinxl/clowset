@@ -12,6 +12,7 @@ class SabadKharidItem extends StatefulWidget {
   final price;
 
   SabadKharidItem({this.number,this.title,this.price});
+
   @override
   _SabadKharidItemState createState() => _SabadKharidItemState();
 }
