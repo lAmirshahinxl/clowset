@@ -1,13 +1,14 @@
 import 'package:bot_toast/bot_toast.dart';
-import 'package:clowset/extension/ZoomSlideUpTransitionsBuilder.dart';
+import 'package:clowset/pages/Home.dart';
 import 'package:clowset/pages/Login.dart';
+import 'package:clowset/pages/Pages.dart';
 import 'package:clowset/pages/Register.dart';
+import 'package:clowset/pages/SabadKharid.dart';
 import 'package:clowset/pages/SelectGenderPage.dart';
 import 'package:clowset/pages/Splash.dart';
 import 'package:clowset/styles/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_page_transition/flutter_page_transition.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,12 +20,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
-        initialRoute: "/splash",
+        initialRoute: "/test",
         routes: {
           '/splash': (context) => SplashScreen(),
           '/selectGender': (context) => SelectGender(),
           '/login': (context) => Login(),
           '/register': (context) => RegisterPage(),
+          '/test': (context) => BuyPages(),
         },
         debugShowCheckedModeBanner: false,
         builder: BotToastInit(),

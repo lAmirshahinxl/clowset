@@ -30,3 +30,23 @@ Future<SharedPreferences> getSharedPreferences() async {
 MyService getService() {
   return new MyService();
 }
+
+double getWidth(BuildContext context , double size){
+  return MediaQuery.of(context).size.width * size;
+}
+extension  DynamicSize on State {
+  double gw(double size){
+    return MediaQuery.of(context).size.width * size;
+  }
+  double gh(double size){
+    return MediaQuery.of(context).size.height * size;
+  }
+}
+extension  DynamicSizeStateless on StatelessWidget {
+  double gw(double size,BuildContext context){
+    return MediaQuery.of(context).size.width * size;
+  }
+  double gh(double size,BuildContext context){
+    return MediaQuery.of(context).size.height * size;
+  }
+}

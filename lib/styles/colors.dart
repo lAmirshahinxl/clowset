@@ -13,6 +13,7 @@ class MyColors {
   );
   static final Color darkPurple = parseColor("#3A0088");
   static final Color black = parseColor("#000000");
+  static final Color backGroundBase = parseColor("#efeff3");
   static final Color white = parseColor("#ffffff");
   static final Color sky = parseColor("#00B2AD");
   static final Color orang = parseColor("#fe730e");
@@ -22,6 +23,7 @@ class MyColors {
   static final Color mainTitle = parseColor("#200E32");
   static final Color lightPurple = parseColor("#930077");
   static final Color mustard = parseColor("#FFBD39");
+  static final Color red = parseColor("#Fe1212");
   static final Color darkPink = parseColor("#E61C5D");
   static final Color lightBlueBdgeColor = parseColor("#4F9DA2");
   static final Color lightBadgeBg = parseColor("#D3EFF1");
