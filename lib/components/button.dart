@@ -12,7 +12,7 @@ class ButtonBig extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 25, right: 30, left: 30),
+      margin: EdgeInsets.only(top: 25, right: 10, left: 10),
       width: double.infinity,
       height: 66,
       child: RaisedButton(

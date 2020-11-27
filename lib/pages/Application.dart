@@ -2,7 +2,6 @@ import 'package:clowset/pages/Favorit.dart';
 import 'package:clowset/pages/Home.dart';
 import 'package:clowset/pages/SabadKharid.dart';
 import 'package:clowset/pages/Search.dart';
-import 'package:clowset/pages/SelectGenderPage.dart';
 import 'package:clowset/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
