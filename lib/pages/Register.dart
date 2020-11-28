@@ -182,15 +182,17 @@ class _RegisterPageState extends State<RegisterPage> {
 
     SharedPreferences _pref = await SharedPreferences.getInstance();
     BotToast.showLoading();
-    var model = await _service.login(
+    var model = await _service.register(
         _code, _phone, _password, _repeatPassword, _name, _family);
 
-    if (model.error.contains("success") && model.data.token.isNotEmpty) {
+    if (model.status.contains("success") && model.data.token.isNotEmpty) {
       _pref.setString('sampleToken', model.data.token);
       _pref.setString('phoneNumber', _phone);
+      _pref.setString('countryCode', _code);
       Navigator.pushNamed(context, '/verify');
     } else {
       toast(text: model.message, color: Colors.red);
     }
+    BotToast.closeAllLoading();
   }
 }

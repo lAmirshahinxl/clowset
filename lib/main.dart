@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
-        initialRoute: "/test",
+        initialRoute: "/splash",
         routes: {
           '/splash': (context) => SplashScreen(),
           '/selectGender': (context) => SelectGender(),
@@ -39,11 +39,11 @@ class MyApp extends StatelessWidget {
           fontFamily: "iran",
           pageTransitionsTheme: PageTransitionsTheme(builders: {
             TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.android: ZoomSlideUpTransitionsBuilder(),
-            TargetPlatform.fuchsia: ZoomSlideUpTransitionsBuilder(),
-            TargetPlatform.windows: ZoomSlideUpTransitionsBuilder(),
-            TargetPlatform.macOS: ZoomSlideUpTransitionsBuilder(),
-            TargetPlatform.linux: ZoomSlideUpTransitionsBuilder(),
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.fuchsia: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.linux: CupertinoPageTransitionsBuilder(),
           }),
         )
     );

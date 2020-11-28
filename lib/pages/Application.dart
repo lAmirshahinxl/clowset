@@ -15,55 +15,80 @@ class _ApplicationState extends State<Application> {
   PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
 
+  var _pageController = PageController(initialPage: 0, keepPage: true);
+
+  Future<bool> _onWillPop() async {
+    int page = _pageController.page.toInt() - 1;
+    if (page >= 0) {
+      _pageController.animateToPage(page,
+          curve: Curves.decelerate, duration: Duration(milliseconds: 400));
+      print(page.toString());
+      return null;
+    } else {
+      return true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return PersistentTabView(
-      controller: _controller,
-      screens: _buildScreens(),
-      items: _navBarsItems(),
-      confineInSafeArea: true,
-      backgroundColor: Colors.white,
-      handleAndroidBackButtonPress: true,
-      resizeToAvoidBottomInset: true,
-      stateManagement: true,
-      hideNavigationBarWhenKeyboardShows: true,
-      decoration: NavBarDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        colorBehindNavBar: Colors.white,
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: PersistentTabView(
+        controller: _controller,
+        screens: _buildScreens(),
+        items: _navBarsItems(),
+        confineInSafeArea: true,
+        backgroundColor: Colors.white,
+        handleAndroidBackButtonPress: true,
+        resizeToAvoidBottomInset: true,
+        stateManagement: true,
+        hideNavigationBarWhenKeyboardShows: true,
+        decoration: NavBarDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          colorBehindNavBar: Colors.white,
+        ),
+        popAllScreensOnTapOfSelectedTab: true,
+        popActionScreens: PopActionScreensType.all,
+        itemAnimationProperties: ItemAnimationProperties(
+          // Navigation Bar's items animation properties.
+          duration: Duration(milliseconds: 200),
+          curve: Curves.ease,
+        ),
+        screenTransitionAnimation: ScreenTransitionAnimation(
+          // Screen transition animation on change of selected tab.
+          animateTabTransition: true,
+          curve: Curves.ease,
+          duration: Duration(milliseconds: 200),
+        ),
+        navBarStyle:
+            NavBarStyle.style15, // Choose the nav bar style with this property.
       ),
-      popAllScreensOnTapOfSelectedTab: true,
-      popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: ItemAnimationProperties(
-        // Navigation Bar's items animation properties.
-        duration: Duration(milliseconds: 200),
-        curve: Curves.ease,
-      ),
-      screenTransitionAnimation: ScreenTransitionAnimation(
-        // Screen transition animation on change of selected tab.
-        animateTabTransition: true,
-        curve: Curves.ease,
-        duration: Duration(milliseconds: 200),
-      ),
-      navBarStyle:
-          NavBarStyle.style15, // Choose the nav bar style with this property.
     );
   }
 
   List<Widget> _buildScreens() {
-    return [HomePage(), Favorit(), Search(), SabadKharid(), HomePage()];
+    return [
+      HomePage(
+        pageController: _pageController,
+      ),
+      SabadKharid(),
+      Favorit(),
+      Search(),
+      Search()
+    ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.person_outline),
-        title: ("پروفایل"),
+        icon: Icon(Icons.home_outlined),
+        title: ("خانه"),
         activeColor: MyColors.orang,
         inactiveColor: MyColors.gray,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.favorite_border),
-        title: ("مورد علاقه"),
+        icon: Icon(Icons.shopping_basket_outlined),
+        title: ("سبد خرید"),
         activeColor: MyColors.orang,
         inactiveColor: MyColors.gray,
       ),
@@ -74,14 +99,14 @@ class _ApplicationState extends State<Application> {
         activeContentColor: Colors.white,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.shopping_basket_outlined),
-        title: ("سبد خرید"),
+        icon: Icon(Icons.favorite_border),
+        title: ("مورد علاقه"),
         activeColor: MyColors.orang,
         inactiveColor: MyColors.gray,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.home_outlined),
-        title: ("خانه"),
+        icon: Icon(Icons.person_outline),
+        title: ("پروفایل"),
         activeColor: MyColors.orang,
         inactiveColor: MyColors.gray,
       ),

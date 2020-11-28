@@ -20,15 +20,19 @@ class UnderlineText extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
+              InkWell(
+                borderRadius: BorderRadius.circular(50),
                 onTap: function,
-                child: Text(sending,
-                    style: TextStyle(
-                      color: Colors.blue.withOpacity(0.8),
-                      fontSize: 15,
-                      fontFamily: "iran",
-                      fontWeight: FontWeight.bold,
-                    )),
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(sending,
+                      style: TextStyle(
+                        color: Colors.blue.withOpacity(0.8),
+                        fontSize: 15,
+                        fontFamily: "iran",
+                        fontWeight: FontWeight.bold,
+                      )),
+                ),
               ),
               SizedBox(width: 8,),
               Text(

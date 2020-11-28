@@ -28,7 +28,7 @@ class _BuyPagesState extends State<BuyPages> {
               color: Colors.black,
               height: gh(.75),
             ),
-            ButtonBig(text: "اتمام خرید",)
+            ButtonBig(text: "اتمام خرید", onClick: () {  },)
           ]),
     );
   }

@@ -18,7 +18,7 @@ class _SabadKharidState extends State<SabadKharid> {
         children: [
           Header(text: "سبد خرید",),
           SizedBox(
-            height: gh(.79),
+            height: gh(.73),
             child:Column(
               children: [
                 SabadKharidItem(title: "sdf",number: "sd",price: "sd",),
@@ -27,7 +27,7 @@ class _SabadKharidState extends State<SabadKharid> {
               ],
             )
           ),
-          ButtonBig(text: "اتمام خرید",)
+          ButtonBig(text: "اتمام خرید", onClick: () {  },)
         ],
       )
     );

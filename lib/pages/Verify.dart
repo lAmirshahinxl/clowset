@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:clowset/components/TextNaranji.dart';
 import 'package:clowset/components/button.dart';
 import 'package:clowset/components/text_underlined.dart';
+import 'package:clowset/core/service/Service.dart';
 import 'package:clowset/extension/ext.dart';
 import 'package:clowset/styles/strings.dart';
 import 'package:clowset/styles/styles.dart';
@@ -19,12 +21,16 @@ class Verify extends StatefulWidget {
 class _VerifyState extends State<Verify> {
   var controller = TextEditingController();
   String _number = "";
+  String _countryCode = "";
+  String _pin = "";
 
+  final _service = MyService();
   @override
   void initState() {
     getNumber();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,18 +43,18 @@ class _VerifyState extends State<Verify> {
               height: MediaQuery.of(context).size.height * .15,
             ),
             Text(MyStrings.verifyCode,
-                textAlign: TextAlign.center,
-                style: MyStyles.registerTitle),
+                textAlign: TextAlign.center, style: MyStyles.registerTitle),
             SizedBox(
               height: MediaQuery.of(context).size.height * .032,
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .12,
-              child: Text( MyStrings.verifyCodeSended,
+              child: Text(MyStrings.verifyCodeSended,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.black.withOpacity(0.4),
-                    fontFamily: "iran",height: 1.9,
+                    fontFamily: "iran",
+                    height: 1.9,
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                     decoration: TextDecoration.none,
@@ -56,29 +62,36 @@ class _VerifyState extends State<Verify> {
             ),
             Center(
               child: TexteNarenji(
-                  text: '$_number+', aligment: Alignment.center,size: 20.0,),
+                text: '$_countryCode$_number+',
+                aligment: Alignment.center,
+                size: 20.0,
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.35,
               child: Column(
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height*0.09,
+                    height: MediaQuery.of(context).size.height * 0.09,
                   ),
                   Container(
-                    margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.13),
+                    margin: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * 0.13),
                     child: TexteNarenji(
-                    text: "PIN CODE", aligment: Alignment.centerLeft  ),
+                        text: "PIN CODE", aligment: Alignment.centerLeft),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height*0.01,
+                    height: MediaQuery.of(context).size.height * 0.01,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top:27),
+                    padding: const EdgeInsets.only(top: 27),
                     child: PinEntryTextField(
                       showFieldAsBox: false,
                       onSubmit: (String pin) {
-                        _callPinApi();
+                        setState(() {
+                          _pin = pin;
+                        });
+                        _callPinApi(pin);
                       }, // end onSubmit
                     ), // end PinEntryTextField()
                   ),
@@ -86,13 +99,21 @@ class _VerifyState extends State<Verify> {
               ),
             ),
             ButtonBig(
-              text: "تایید", onClick: () {  },
+              text: "تایید",
+              onClick: () {
+                _callPinApi(_pin);
+              },
             ),
             UnderlineText(
-              text: "",sending: "ارسال مجدد",
-              function: () {},
+              text: "",
+              sending: "ارسال مجدد",
+              function: () {
+                _callRepeatConfirmCode();
+              },
             ),
-            SizedBox(height: 20,)
+            SizedBox(
+              height: 20,
+            )
           ],
         ),
       ),
@@ -102,18 +123,43 @@ class _VerifyState extends State<Verify> {
   Future<void> getNumber() async {
     SharedPreferences _pref = await SharedPreferences.getInstance();
     setState(() {
-      _number =_pref.getString('phoneNumber');
+      _number = _pref.getString('phoneNumber');
+      _countryCode = _pref.getString('countryCode');
     });
   }
 
-  void _callPinApi()async {
-    BotToast.showLoading();
+  void _callPinApi(pin) async {
+
+    String _username = _countryCode + _number;
+
     SharedPreferences _pref = await SharedPreferences.getInstance();
-    Timer(Duration(seconds: 2), (){
-      _pref.setString('token', 'sample');
+
+    BotToast.showLoading();
+    var model = await _service.verify(_username, _pref.getString('sampleToken'), pin);
+
+    if (model.status == "success") {
+      _pref.setString('token', _pref.getString('sampleToken'));
+      toast(text: "ورود موفقیت آمیز", color: Colors.green);
       Navigator.pushNamedAndRemoveUntil(context, '/index',(Route<dynamic> route) => false );
-      toast(text: "خوش آمدید", color: Colors.green);
-      BotToast.closeAllLoading();
-    });
+    } else {
+      toast(text: model.message, color: Colors.red);
+    }
+    BotToast.closeAllLoading();
+  }
+
+  void _callRepeatConfirmCode() async {
+    String _username = _countryCode + _number;
+
+    SharedPreferences _pref = await SharedPreferences.getInstance();
+
+    BotToast.showLoading();
+    var model = await _service.sendRepeatConfirmCode(_username, _pref.getString('sampleToken'));
+
+    if (model.status == "success") {
+      toast(text: "کد تایید مجدد ارسال شد", color: Colors.green);
+    } else {
+      toast(text: model.message, color: Colors.red);
+    }
+    BotToast.closeAllLoading();
   }
 }

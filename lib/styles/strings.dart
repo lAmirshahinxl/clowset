@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class MyStrings {
   static final String baseUrl = "http://clowset.com/admin/admin/app2/";
+  static final String baseToken = "2472964b11a281ec3cb7c412b17ac9fb5e";
   static final String appTitle = "clowset";
   static final String imFmale = "! من خانمم";
   static final String imMale = "! من آقام";
@@ -16,4 +17,5 @@ class MyStrings {
   static final String password = "رمز عبور";
   static final String inputPassword = "رمز عبور را وارد نمایید";
   static final String repeatPassword = "تکرار رمز عبور";
+  static final String confirmYourPhone = "ابتدا شماره تلفن خود را تایید کنید";
 }

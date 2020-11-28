@@ -1,11 +1,16 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:clowset/components/MyEditText.dart';
 import 'package:clowset/components/MyPassword.dart';
 import 'package:clowset/components/TextNaranji.dart';
 import 'package:clowset/components/button.dart';
 import 'package:clowset/components/text_underlined.dart';
+import 'package:clowset/core/service/Service.dart';
+import 'package:clowset/extension/ext.dart';
 import 'package:clowset/styles/colors.dart';
+import 'package:clowset/styles/strings.dart';
 import 'package:clowset/styles/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -17,6 +22,7 @@ class _LoginState extends State<Login> {
   var _codeController = TextEditingController();
   var _passwordController = TextEditingController();
 
+  final _service = MyService();
   Future<bool> _onWillPop() async {
     Navigator.pushReplacementNamed(context, '/register');
     return true;
@@ -55,12 +61,16 @@ class _LoginState extends State<Login> {
                             reg: r'[0-9]',
                             length: 3,
                             controller: _codeController,
+                            hintColor: Colors.black26,
+                            textColor: Colors.black54,
                             width: MediaQuery.of(context).size.width * 0.16,
                             height: 50.0),
                         MyEditText(
                             hint: "9351234567",
                             reg: r'[0-9]',
                             length: 10,
+                            hintColor: Colors.black26,
+                            textColor: Colors.black54,
                             controller: _phoneController,
                             width: MediaQuery.of(context).size.width * 0.72,
                             height: 50.0)
@@ -90,6 +100,7 @@ class _LoginState extends State<Login> {
                 UnderlineText(
                   text: "حساب کاربری ندارید؟",sending: "ثبت نام",
                   function: () {
+                    Navigator.pushReplacementNamed(context, "/register");
                   },
                 )
               ],
@@ -100,6 +111,28 @@ class _LoginState extends State<Login> {
   }
 
   void _clickedOnLoginButton()async {
+    String _username = _codeController.text.toString() + _phoneController.text.toString();
+    String _password = _passwordController.text.toString();
 
+    SharedPreferences _pref = await SharedPreferences.getInstance();
+    BotToast.showLoading();
+    var model = await _service.login(_username , _password);
+
+
+
+    if (model.status == "success") {
+      _pref.setString('token', model.data.token);
+      toast(text: "ورود موفقیت آمیز", color: Colors.green);
+      Navigator.pushNamedAndRemoveUntil(context, '/index',(Route<dynamic> route) => false );
+    } else if (model.message == "-1"){
+      toast(text: MyStrings.confirmYourPhone, color: Colors.blue);
+      _pref.setString('sampleToken', model.data.token);
+      _pref.setString('phoneNumber', _phoneController.text.toString());
+      _pref.setString('countryCode', _codeController.text.toString());
+      Navigator.pushReplacementNamed(context, '/verify');
+    } else {
+      toast(text: model.message, color: Colors.red);
+    }
+    BotToast.closeAllLoading();
   }
 }
