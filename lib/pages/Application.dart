@@ -15,7 +15,7 @@ class _ApplicationState extends State<Application> {
   PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
 
-  var _pageController = PageController(initialPage: 0, keepPage: true);
+  var _pageController = PageController(initialPage: 0, keepPage: false);
 
   Future<bool> _onWillPop() async {
     int page = _pageController.page.toInt() - 1;

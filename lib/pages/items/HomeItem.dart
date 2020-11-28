@@ -35,7 +35,7 @@ class _HomeItemState extends State<HomeItem> {
               child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                      splashColor: Colors.orangeAccent.withOpacity(0.5),
+                      splashColor: Colors.lightBlue.withOpacity(0.1),
                       onTap: () {
                         widget.callback(widget.id);
                       })),

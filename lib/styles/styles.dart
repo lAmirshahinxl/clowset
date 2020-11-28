@@ -16,7 +16,7 @@ class MyStyles {
       fontWeight: FontWeight.bold);
 
   static final textFieldHintStyle = TextStyle(
-    color: Colors.black.withOpacity(0.8),
+    color: Colors.black.withOpacity(0.5),
     fontFamily: "iran",
     fontSize: 17,
     decoration: TextDecoration.none,
@@ -43,6 +43,15 @@ class MyStyles {
     fontFamily: "iran",
     fontWeight: FontWeight.bold,
     fontSize: 22,
+    decoration: TextDecoration.none,
+  );
+
+
+  static final titleShop = TextStyle(
+    color: Colors.deepOrangeAccent,
+    fontFamily: "iran",
+    fontWeight: FontWeight.bold,
+    fontSize: 18,
     decoration: TextDecoration.none,
   );
 }

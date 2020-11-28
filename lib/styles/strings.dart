@@ -7,6 +7,8 @@ class MyStrings {
   static final String imFmale = "! من خانمم";
   static final String imMale = "! من آقام";
   static final String login = "ورود";
+  static final String shopName = "نام فروشگاه";
+  static final String search = "جستجو";
   static final String verifyCodeSended = "کد تاییدیه به شماره زیر ارسال گردید لطفا آن را وارد نمایید";
   static final String verifyCode = "کد تاییدیه ";
   static final String nameFamily = "نام و نام خانوادگی";

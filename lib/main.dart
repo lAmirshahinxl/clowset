@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         navigatorObservers: [BotToastNavigatorObserver()],
         title: MyStrings.appTitle,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.lightBlue,
           fontFamily: "iran",
           pageTransitionsTheme: PageTransitionsTheme(builders: {
             TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),

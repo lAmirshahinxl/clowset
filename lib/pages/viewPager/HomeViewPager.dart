@@ -4,7 +4,6 @@ import 'package:clowset/pages/items/HomeItem.dart';
 import 'package:flutter/material.dart';
 
 typedef OnPressItem(String id);
-
 class HomeViewPager extends StatefulWidget {
   final MyService service;
   OnPressItem callback;

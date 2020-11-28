@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:clowset/core/models/home_category_model.dart';
 import 'package:clowset/core/models/login_model.dart';
+import 'package:clowset/core/models/shop_banner_model.dart';
 import 'package:clowset/styles/strings.dart';
 import 'package:http/http.dart' as http;
 
@@ -52,10 +53,27 @@ class MyService {
     return model;
   }
 
-  Future<HomeCategoryModel> homeBanner () async {
+  Future<HomeCategoryModel> homeBanner() async {
     var url = "${MyStrings.baseUrl}banner_home.php?Token=${MyStrings.baseToken}";
     var response = await http.get(url);
     var model = HomeCategoryModel.fromJson(json.decode(response.body));
     return model;
   }
+
+
+  Future<ShopBannerModel> shopBanner(String shopId) async {
+    var url = "${MyStrings.baseUrl}banner_shop.php?"
+        "Token=${MyStrings.baseToken}&shop=$shopId";
+    var response = await http.get(url);
+    var model = ShopBannerModel.fromJson(json.decode(response.body));
+    return model;
+  }
+
+  // Future<ShopBannerModel> category(String shopId) async {
+  //   var url = "${MyStrings.baseUrl}category.php?"
+  //       "Token=${MyStrings.baseToken}&shop=$shopId";
+  //   var response = await http.get(url);
+  //   var model = ShopBannerModel.fromJson(json.decode(response.body));
+  //   return model;
+  // }
 }
